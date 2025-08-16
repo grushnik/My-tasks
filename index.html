@@ -7,21 +7,70 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="My Tasks">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%235b8bff'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='white'>✓</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5e1dc'/><text x='50' y='62' font-size='64' text-anchor='middle' fill='%23a87c7c'>✓</text></svg>">
   <style>
-    body{margin:0;background:#0f172a;color:#e5e7eb;font-family:system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;min-height:100svh;display:grid;place-items:center;}
-    .app{width:min(720px,100%);padding:16px;}
-    .card{background:#111827;border-radius:20px;padding:20px;}
-    .new{display:flex;flex-direction:column;gap:10px;margin:12px 0 18px;}
-    textarea{flex:1;padding:14px;border-radius:14px;background:#0b1025;color:#e5e7eb;border:1px solid rgba(255,255,255,.12);outline:none;font-size:1rem;min-height:60px;resize:vertical;}
-    button{border:none;border-radius:14px;padding:12px 16px;color:white;cursor:pointer;font-weight:600;background:linear-gradient(135deg,#6366f1,#22d3ee);}    
-    .columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    @media(max-width:720px){.columns{grid-template-columns:1fr;}}
-    .list{background:#1f2937;border-radius:16px;padding:12px;min-height:110px;}
-    .list h2{margin:6px 6px 10px;font-size:1.05rem;color:#dbeafe;font-weight:700;}
-    .item{display:flex;align-items:center;gap:10px;padding:12px;border-radius:12px;margin:6px;background:#0003;}
-    .item.done .name{text-decoration:line-through;opacity:.6;}
-    .name{flex:1;line-height:1.3;}    
+    /* Cozy rose/beige pastel theme */
+    :root{
+      --bg1:#faf3f0; /* soft rose milk */
+      --bg2:#f6ebe6; /* beige blush */
+      --panel:#ffffffcc; /* frosted white */
+      --ink:#4b3f3a; /* cocoa text */
+      --muted:#7a6d67; /* muted cocoa */
+      --beige1:#f3e3d6; /* button base */
+      --beige2:#e8cfc2; /* button grad */
+      --beige3:#d9b9a7; /* accents */
+      --rose:#e9b7c5;   /* gentle rose */
+      --danger:#d48181; /* soft red */
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(160deg,var(--bg1),var(--bg2) 60%, #f5e8e1);
+      color:var(--ink);
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      min-height:100svh; display:grid; place-items:center;
+    }
+    .app{width:min(720px,100%);padding:16px}
+    .card{
+      background:var(--panel);
+      backdrop-filter:saturate(120%) blur(6px);
+      border:1px solid #00000010;
+      border-radius:20px; padding:20px; box-shadow:0 10px 30px #00000014;
+    }
+    h1{margin:0 0 6px;font-size:1.6rem;color:var(--ink)}
+
+    .new{display:flex;flex-direction:column;gap:10px;margin:12px 0 18px}
+    textarea{flex:1;padding:14px;border-radius:14px;background:#ffffff;
+      color:var(--ink);border:1px solid #0000001f;outline:none;font-size:1rem;min-height:68px;resize:vertical}
+    textarea::placeholder{color:#8b7f7a}
+
+    button{border:none;border-radius:14px;padding:12px 16px;color:#4b3f3a;cursor:pointer;font-weight:700;
+      background:linear-gradient(135deg,var(--beige1),var(--beige2));
+      box-shadow:0 2px 0 #00000010 inset, 0 1px 3px #00000014;}
+    button:hover{filter:brightness(1.02)}
+
+    .columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:720px){.columns{grid-template-columns:1fr}}
+
+    .list{background:#ffffffb3;border:1px solid #0000000e;border-radius:16px;padding:12px;min-height:110px}
+    .list h2{margin:6px 6px 10px;font-size:1.05rem;color:#6c5b56;font-weight:800}
+
+    .item{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;margin:6px;background:#00000006;border:1px solid #00000008}
+    .item .name{flex:1;line-height:1.35}
+    .item.done .name{text-decoration:line-through;opacity:.6}
+
+    /* Bigger, beige checkbox with larger tap target */
+    .check{
+      width:22px;height:22px; /* base size */
+      transform:scale(1.6); /* visually bigger */
+      transform-origin:left center;
+      accent-color: var(--beige3);
+      cursor:pointer;
+    }
+    .delete{
+      background:linear-gradient(135deg,var(--rose),#f4d1cf);
+      color:#4b3f3a;
+    }
   </style>
 </head>
 <body>
@@ -82,4 +131,5 @@
   </script>
 </body>
 </html>
+
 
